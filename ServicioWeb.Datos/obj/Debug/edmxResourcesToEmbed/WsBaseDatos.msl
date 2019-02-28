@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JuguetesModelStoreContainer" CdmEntityContainer="JuguetesEntities">
+    <EntitySetMapping Name="Cata_Categoria">
+      <EntityTypeMapping TypeName="JuguetesModel.Cata_Categoria">
+        <MappingFragment StoreEntitySet="Cata_Categoria">
+          <ScalarProperty Name="Cate_Nombre" ColumnName="Cate_Nombre" />
+          <ScalarProperty Name="Cate_Id" ColumnName="Cate_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cata_Marca">
+      <EntityTypeMapping TypeName="JuguetesModel.Cata_Marca">
+        <MappingFragment StoreEntitySet="Cata_Marca">
+          <ScalarProperty Name="Cata_Nombre" ColumnName="Cata_Nombre" />
+          <ScalarProperty Name="Cata_Id" ColumnName="Cata_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Juguete">
+      <EntityTypeMapping TypeName="JuguetesModel.Juguete">
+        <MappingFragment StoreEntitySet="Juguete">
+          <ScalarProperty Name="Jugue_Costo" ColumnName="Jugue_Costo" />
+          <ScalarProperty Name="Jugue_Foto" ColumnName="Jugue_Foto" />
+          <ScalarProperty Name="Jugue_Estatus" ColumnName="Jugue_Estatus" />
+          <ScalarProperty Name="Jugue_Precio" ColumnName="Jugue_Precio" />
+          <ScalarProperty Name="Jugue_Fecha_Alta" ColumnName="Jugue_Fecha_Alta" />
+          <ScalarProperty Name="Jugue_Categoria_Id" ColumnName="Jugue_Categoria_Id" />
+          <ScalarProperty Name="Jugue_Marca_Id" ColumnName="Jugue_Marca_Id" />
+          <ScalarProperty Name="Jugue_Existencia" ColumnName="Jugue_Existencia" />
+          <ScalarProperty Name="Jugue_Nombre" ColumnName="Jugue_Nombre" />
+          <ScalarProperty Name="Jugue_Id" ColumnName="Jugue_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="JuguetesModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

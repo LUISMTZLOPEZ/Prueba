@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JuguetesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="JuguetesEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cata_Categoria" EntityType="JuguetesModel.Cata_Categoria" />
+    <EntitySet Name="Cata_Marca" EntityType="JuguetesModel.Cata_Marca" />
+    <EntitySet Name="Juguete" EntityType="JuguetesModel.Juguete" />
+    <EntitySet Name="sysdiagrams" EntityType="JuguetesModel.sysdiagrams" />
+    <AssociationSet Name="FK_Juguete_Cata_Categoria" Association="JuguetesModel.FK_Juguete_Cata_Categoria">
+      <End Role="Cata_Categoria" EntitySet="Cata_Categoria" />
+      <End Role="Juguete" EntitySet="Juguete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Juguete_Cata_Marca" Association="JuguetesModel.FK_Juguete_Cata_Marca">
+      <End Role="Cata_Marca" EntitySet="Cata_Marca" />
+      <End Role="Juguete" EntitySet="Juguete" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cata_Categoria">
+    <Key>
+      <PropertyRef Name="Cate_Id" />
+    </Key>
+    <Property Name="Cate_Id" Type="Int32" Nullable="false" />
+    <Property Name="Cate_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Juguete" Relationship="JuguetesModel.FK_Juguete_Cata_Categoria" FromRole="Cata_Categoria" ToRole="Juguete" />
+  </EntityType>
+  <EntityType Name="Cata_Marca">
+    <Key>
+      <PropertyRef Name="Cata_Id" />
+    </Key>
+    <Property Name="Cata_Id" Type="Int32" Nullable="false" />
+    <Property Name="Cata_Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Juguete" Relationship="JuguetesModel.FK_Juguete_Cata_Marca" FromRole="Cata_Marca" ToRole="Juguete" />
+  </EntityType>
+  <EntityType Name="Juguete">
+    <Key>
+      <PropertyRef Name="Jugue_Id" />
+    </Key>
+    <Property Name="Jugue_Id" Type="Int32" Nullable="false" />
+    <Property Name="Jugue_Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Jugue_Existencia" Type="Int32" />
+    <Property Name="Jugue_Marca_Id" Type="Int32" />
+    <Property Name="Jugue_Categoria_Id" Type="Int32" />
+    <Property Name="Jugue_Fecha_Alta" Type="DateTime" Precision="0" />
+    <Property Name="Jugue_Precio" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Jugue_Estatus" Type="Boolean" />
+    <Property Name="Jugue_Foto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Jugue_Costo" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="Cata_Categoria" Relationship="JuguetesModel.FK_Juguete_Cata_Categoria" FromRole="Juguete" ToRole="Cata_Categoria" />
+    <NavigationProperty Name="Cata_Marca" Relationship="JuguetesModel.FK_Juguete_Cata_Marca" FromRole="Juguete" ToRole="Cata_Marca" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Juguete_Cata_Categoria">
+    <End Type="JuguetesModel.Cata_Categoria" Role="Cata_Categoria" Multiplicity="0..1" />
+    <End Type="JuguetesModel.Juguete" Role="Juguete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cata_Categoria">
+        <PropertyRef Name="Cate_Id" />
+      </Principal>
+      <Dependent Role="Juguete">
+        <PropertyRef Name="Jugue_Categoria_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Juguete_Cata_Marca">
+    <End Type="JuguetesModel.Cata_Marca" Role="Cata_Marca" Multiplicity="0..1" />
+    <End Type="JuguetesModel.Juguete" Role="Juguete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cata_Marca">
+        <PropertyRef Name="Cata_Id" />
+      </Principal>
+      <Dependent Role="Juguete">
+        <PropertyRef Name="Jugue_Marca_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

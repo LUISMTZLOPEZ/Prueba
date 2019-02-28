@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ReportServerModelStoreContainer" CdmEntityContainer="ReportServerEntities">
+    <EntitySetMapping Name="ActiveSubscriptions">
+      <EntityTypeMapping TypeName="ReportServerModel.ActiveSubscriptions">
+        <MappingFragment StoreEntitySet="ActiveSubscriptions">
+          <ScalarProperty Name="ActiveID" ColumnName="ActiveID" />
+          <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+          <ScalarProperty Name="TotalNotifications" ColumnName="TotalNotifications" />
+          <ScalarProperty Name="TotalSuccesses" ColumnName="TotalSuccesses" />
+          <ScalarProperty Name="TotalFailures" ColumnName="TotalFailures" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CachePolicy">
+      <EntityTypeMapping TypeName="ReportServerModel.CachePolicy">
+        <MappingFragment StoreEntitySet="CachePolicy">
+          <ScalarProperty Name="CachePolicyID" ColumnName="CachePolicyID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ExpirationFlags" ColumnName="ExpirationFlags" />
+          <ScalarProperty Name="CacheExpiration" ColumnName="CacheExpiration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Catalog">
+      <EntityTypeMapping TypeName="ReportServerModel.Catalog">
+        <MappingFragment StoreEntitySet="Catalog">
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Intermediate" ColumnName="Intermediate" />
+          <ScalarProperty Name="SnapshotDataID" ColumnName="SnapshotDataID" />
+          <ScalarProperty Name="LinkSourceID" ColumnName="LinkSourceID" />
+          <ScalarProperty Name="Property" ColumnName="Property" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Hidden" ColumnName="Hidden" />
+          <ScalarProperty Name="CreatedByID" ColumnName="CreatedByID" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+          <ScalarProperty Name="SnapshotLimit" ColumnName="SnapshotLimit" />
+          <ScalarProperty Name="Parameter" ColumnName="Parameter" />
+          <ScalarProperty Name="PolicyID" ColumnName="PolicyID" />
+          <ScalarProperty Name="PolicyRoot" ColumnName="PolicyRoot" />
+          <ScalarProperty Name="ExecutionFlag" ColumnName="ExecutionFlag" />
+          <ScalarProperty Name="ExecutionTime" ColumnName="ExecutionTime" />
+          <ScalarProperty Name="SubType" ColumnName="SubType" />
+          <ScalarProperty Name="ComponentID" ColumnName="ComponentID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChunkData">
+      <EntityTypeMapping TypeName="ReportServerModel.ChunkData">
+        <MappingFragment StoreEntitySet="ChunkData">
+          <ScalarProperty Name="ChunkID" ColumnName="ChunkID" />
+          <ScalarProperty Name="SnapshotDataID" ColumnName="SnapshotDataID" />
+          <ScalarProperty Name="ChunkFlags" ColumnName="ChunkFlags" />
+          <ScalarProperty Name="ChunkName" ColumnName="ChunkName" />
+          <ScalarProperty Name="ChunkType" ColumnName="ChunkType" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ChunkSegmentMapping">
+      <EntityTypeMapping TypeName="ReportServerModel.ChunkSegmentMapping">
+        <MappingFragment StoreEntitySet="ChunkSegmentMapping">
+          <ScalarProperty Name="ChunkId" ColumnName="ChunkId" />
+          <ScalarProperty Name="SegmentId" ColumnName="SegmentId" />
+          <ScalarProperty Name="StartByte" ColumnName="StartByte" />
+          <ScalarProperty Name="LogicalByteCount" ColumnName="LogicalByteCount" />
+          <ScalarProperty Name="ActualByteCount" ColumnName="ActualByteCount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConfigurationInfo">
+      <EntityTypeMapping TypeName="ReportServerModel.ConfigurationInfo">
+        <MappingFragment StoreEntitySet="ConfigurationInfo">
+          <ScalarProperty Name="ConfigInfoID" ColumnName="ConfigInfoID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataSets">
+      <EntityTypeMapping TypeName="ReportServerModel.DataSets">
+        <MappingFragment StoreEntitySet="DataSets">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="LinkID" ColumnName="LinkID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DataSource">
+      <EntityTypeMapping TypeName="ReportServerModel.DataSource">
+        <MappingFragment StoreEntitySet="DataSource">
+          <ScalarProperty Name="DSID" ColumnName="DSID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Extension" ColumnName="Extension" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="CredentialRetrieval" ColumnName="CredentialRetrieval" />
+          <ScalarProperty Name="Prompt" ColumnName="Prompt" />
+          <ScalarProperty Name="ConnectionString" ColumnName="ConnectionString" />
+          <ScalarProperty Name="OriginalConnectionString" ColumnName="OriginalConnectionString" />
+          <ScalarProperty Name="OriginalConnectStringExpressionBased" ColumnName="OriginalConnectStringExpressionBased" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Flags" ColumnName="Flags" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DBUpgradeHistory">
+      <EntityTypeMapping TypeName="ReportServerModel.DBUpgradeHistory">
+        <MappingFragment StoreEntitySet="DBUpgradeHistory">
+          <ScalarProperty Name="UpgradeID" ColumnName="UpgradeID" />
+          <ScalarProperty Name="DbVersion" ColumnName="DbVersion" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Event">
+      <EntityTypeMapping TypeName="ReportServerModel.Event">
+        <MappingFragment StoreEntitySet="Event">
+          <ScalarProperty Name="EventID" ColumnName="EventID" />
+          <ScalarProperty Name="EventType" ColumnName="EventType" />
+          <ScalarProperty Name="EventData" ColumnName="EventData" />
+          <ScalarProperty Name="TimeEntered" ColumnName="TimeEntered" />
+          <ScalarProperty Name="ProcessStart" ColumnName="ProcessStart" />
+          <ScalarProperty Name="ProcessHeartbeat" ColumnName="ProcessHeartbeat" />
+          <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExecutionLogStorage">
+      <EntityTypeMapping TypeName="ReportServerModel.ExecutionLogStorage">
+        <MappingFragment StoreEntitySet="ExecutionLogStorage">
+          <ScalarProperty Name="LogEntryId" ColumnName="LogEntryId" />
+          <ScalarProperty Name="InstanceName" ColumnName="InstanceName" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="ExecutionId" ColumnName="ExecutionId" />
+          <ScalarProperty Name="RequestType" ColumnName="RequestType" />
+          <ScalarProperty Name="Format" ColumnName="Format" />
+          <ScalarProperty Name="Parameters" ColumnName="Parameters" />
+          <ScalarProperty Name="ReportAction" ColumnName="ReportAction" />
+          <ScalarProperty Name="TimeStart" ColumnName="TimeStart" />
+          <ScalarProperty Name="TimeEnd" ColumnName="TimeEnd" />
+          <ScalarProperty Name="TimeDataRetrieval" ColumnName="TimeDataRetrieval" />
+          <ScalarProperty Name="TimeProcessing" ColumnName="TimeProcessing" />
+          <ScalarProperty Name="TimeRendering" ColumnName="TimeRendering" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="ByteCount" ColumnName="ByteCount" />
+          <ScalarProperty Name="RowCount" ColumnName="RowCount" />
+          <ScalarProperty Name="AdditionalInfo" ColumnName="AdditionalInfo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="History">
+      <EntityTypeMapping TypeName="ReportServerModel.History">
+        <MappingFragment StoreEntitySet="History">
+          <ScalarProperty Name="HistoryID" ColumnName="HistoryID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="SnapshotDataID" ColumnName="SnapshotDataID" />
+          <ScalarProperty Name="SnapshotDate" ColumnName="SnapshotDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Keys">
+      <EntityTypeMapping TypeName="ReportServerModel.Keys">
+        <MappingFragment StoreEntitySet="Keys">
+          <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+          <ScalarProperty Name="InstallationID" ColumnName="InstallationID" />
+          <ScalarProperty Name="InstanceName" ColumnName="InstanceName" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="PublicKey" ColumnName="PublicKey" />
+          <ScalarProperty Name="SymmetricKey" ColumnName="SymmetricKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelDrill">
+      <EntityTypeMapping TypeName="ReportServerModel.ModelDrill">
+        <MappingFragment StoreEntitySet="ModelDrill">
+          <ScalarProperty Name="ModelDrillID" ColumnName="ModelDrillID" />
+          <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="ModelItemID" ColumnName="ModelItemID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelItemPolicy">
+      <EntityTypeMapping TypeName="ReportServerModel.ModelItemPolicy">
+        <MappingFragment StoreEntitySet="ModelItemPolicy">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CatalogItemID" ColumnName="CatalogItemID" />
+          <ScalarProperty Name="ModelItemID" ColumnName="ModelItemID" />
+          <ScalarProperty Name="PolicyID" ColumnName="PolicyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="ReportServerModel.Notifications">
+        <MappingFragment StoreEntitySet="Notifications">
+          <ScalarProperty Name="NotificationID" ColumnName="NotificationID" />
+          <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+          <ScalarProperty Name="ActivationID" ColumnName="ActivationID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="SnapShotDate" ColumnName="SnapShotDate" />
+          <ScalarProperty Name="ExtensionSettings" ColumnName="ExtensionSettings" />
+          <ScalarProperty Name="Locale" ColumnName="Locale" />
+          <ScalarProperty Name="Parameters" ColumnName="Parameters" />
+          <ScalarProperty Name="ProcessStart" ColumnName="ProcessStart" />
+          <ScalarProperty Name="NotificationEntered" ColumnName="NotificationEntered" />
+          <ScalarProperty Name="ProcessAfter" ColumnName="ProcessAfter" />
+          <ScalarProperty Name="Attempt" ColumnName="Attempt" />
+          <ScalarProperty Name="SubscriptionLastRunTime" ColumnName="SubscriptionLastRunTime" />
+          <ScalarProperty Name="DeliveryExtension" ColumnName="DeliveryExtension" />
+          <ScalarProperty Name="SubscriptionOwnerID" ColumnName="SubscriptionOwnerID" />
+          <ScalarProperty Name="IsDataDriven" ColumnName="IsDataDriven" />
+          <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+          <ScalarProperty Name="ProcessHeartbeat" ColumnName="ProcessHeartbeat" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="ReportZone" ColumnName="ReportZone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Policies">
+      <EntityTypeMapping TypeName="ReportServerModel.Policies">
+        <MappingFragment StoreEntitySet="Policies">
+          <ScalarProperty Name="PolicyID" ColumnName="PolicyID" />
+          <ScalarProperty Name="PolicyFlag" ColumnName="PolicyFlag" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PolicyUserRole">
+      <EntityTypeMapping TypeName="ReportServerModel.PolicyUserRole">
+        <MappingFragment StoreEntitySet="PolicyUserRole">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="PolicyID" ColumnName="PolicyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="ReportServerModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TaskMask" ColumnName="TaskMask" />
+          <ScalarProperty Name="RoleFlags" ColumnName="RoleFlags" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RunningJobs">
+      <EntityTypeMapping TypeName="ReportServerModel.RunningJobs">
+        <MappingFragment StoreEntitySet="RunningJobs">
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="ComputerName" ColumnName="ComputerName" />
+          <ScalarProperty Name="RequestName" ColumnName="RequestName" />
+          <ScalarProperty Name="RequestPath" ColumnName="RequestPath" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Timeout" ColumnName="Timeout" />
+          <ScalarProperty Name="JobAction" ColumnName="JobAction" />
+          <ScalarProperty Name="JobType" ColumnName="JobType" />
+          <ScalarProperty Name="JobStatus" ColumnName="JobStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Schedule">
+      <EntityTypeMapping TypeName="ReportServerModel.Schedule">
+        <MappingFragment StoreEntitySet="Schedule">
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="Flags" ColumnName="Flags" />
+          <ScalarProperty Name="NextRunTime" ColumnName="NextRunTime" />
+          <ScalarProperty Name="LastRunTime" ColumnName="LastRunTime" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="RecurrenceType" ColumnName="RecurrenceType" />
+          <ScalarProperty Name="MinutesInterval" ColumnName="MinutesInterval" />
+          <ScalarProperty Name="DaysInterval" ColumnName="DaysInterval" />
+          <ScalarProperty Name="WeeksInterval" ColumnName="WeeksInterval" />
+          <ScalarProperty Name="DaysOfWeek" ColumnName="DaysOfWeek" />
+          <ScalarProperty Name="DaysOfMonth" ColumnName="DaysOfMonth" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="MonthlyWeek" ColumnName="MonthlyWeek" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="LastRunStatus" ColumnName="LastRunStatus" />
+          <ScalarProperty Name="ScheduledRunTimeout" ColumnName="ScheduledRunTimeout" />
+          <ScalarProperty Name="CreatedById" ColumnName="CreatedById" />
+          <ScalarProperty Name="EventType" ColumnName="EventType" />
+          <ScalarProperty Name="EventData" ColumnName="EventData" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ConsistancyCheck" ColumnName="ConsistancyCheck" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SecData">
+      <EntityTypeMapping TypeName="ReportServerModel.SecData">
+        <MappingFragment StoreEntitySet="SecData">
+          <ScalarProperty Name="SecDataID" ColumnName="SecDataID" />
+          <ScalarProperty Name="PolicyID" ColumnName="PolicyID" />
+          <ScalarProperty Name="AuthType" ColumnName="AuthType" />
+          <ScalarProperty Name="XmlDescription" ColumnName="XmlDescription" />
+          <ScalarProperty Name="NtSecDescPrimary" ColumnName="NtSecDescPrimary" />
+          <ScalarProperty Name="NtSecDescSecondary" ColumnName="NtSecDescSecondary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Segment">
+      <EntityTypeMapping TypeName="ReportServerModel.Segment">
+        <MappingFragment StoreEntitySet="Segment">
+          <ScalarProperty Name="SegmentId" ColumnName="SegmentId" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SegmentedChunk">
+      <EntityTypeMapping TypeName="ReportServerModel.SegmentedChunk">
+        <MappingFragment StoreEntitySet="SegmentedChunk">
+          <ScalarProperty Name="ChunkId" ColumnName="ChunkId" />
+          <ScalarProperty Name="SnapshotDataId" ColumnName="SnapshotDataId" />
+          <ScalarProperty Name="ChunkFlags" ColumnName="ChunkFlags" />
+          <ScalarProperty Name="ChunkName" ColumnName="ChunkName" />
+          <ScalarProperty Name="ChunkType" ColumnName="ChunkType" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="MimeType" ColumnName="MimeType" />
+          <ScalarProperty Name="SegmentedChunkId" ColumnName="SegmentedChunkId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServerParametersInstance">
+      <EntityTypeMapping TypeName="ReportServerModel.ServerParametersInstance">
+        <MappingFragment StoreEntitySet="ServerParametersInstance">
+          <ScalarProperty Name="ServerParametersID" ColumnName="ServerParametersID" />
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="Path" ColumnName="Path" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="Timeout" ColumnName="Timeout" />
+          <ScalarProperty Name="Expiration" ColumnName="Expiration" />
+          <ScalarProperty Name="ParametersValues" ColumnName="ParametersValues" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServerUpgradeHistory">
+      <EntityTypeMapping TypeName="ReportServerModel.ServerUpgradeHistory">
+        <MappingFragment StoreEntitySet="ServerUpgradeHistory">
+          <ScalarProperty Name="UpgradeID" ColumnName="UpgradeID" />
+          <ScalarProperty Name="ServerVersion" ColumnName="ServerVersion" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SnapshotData">
+      <EntityTypeMapping TypeName="ReportServerModel.SnapshotData">
+        <MappingFragment StoreEntitySet="SnapshotData">
+          <ScalarProperty Name="SnapshotDataID" ColumnName="SnapshotDataID" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ParamsHash" ColumnName="ParamsHash" />
+          <ScalarProperty Name="QueryParams" ColumnName="QueryParams" />
+          <ScalarProperty Name="EffectiveParams" ColumnName="EffectiveParams" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DependsOnUser" ColumnName="DependsOnUser" />
+          <ScalarProperty Name="PermanentRefcount" ColumnName="PermanentRefcount" />
+          <ScalarProperty Name="TransientRefcount" ColumnName="TransientRefcount" />
+          <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+          <ScalarProperty Name="PageCount" ColumnName="PageCount" />
+          <ScalarProperty Name="HasDocMap" ColumnName="HasDocMap" />
+          <ScalarProperty Name="PaginationMode" ColumnName="PaginationMode" />
+          <ScalarProperty Name="ProcessingFlags" ColumnName="ProcessingFlags" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subscriptions">
+      <EntityTypeMapping TypeName="ReportServerModel.Subscriptions">
+        <MappingFragment StoreEntitySet="Subscriptions">
+          <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+          <ScalarProperty Name="Report_OID" ColumnName="Report_OID" />
+          <ScalarProperty Name="Locale" ColumnName="Locale" />
+          <ScalarProperty Name="InactiveFlags" ColumnName="InactiveFlags" />
+          <ScalarProperty Name="ExtensionSettings" ColumnName="ExtensionSettings" />
+          <ScalarProperty Name="ModifiedByID" ColumnName="ModifiedByID" />
+          <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="LastStatus" ColumnName="LastStatus" />
+          <ScalarProperty Name="EventType" ColumnName="EventType" />
+          <ScalarProperty Name="MatchData" ColumnName="MatchData" />
+          <ScalarProperty Name="LastRunTime" ColumnName="LastRunTime" />
+          <ScalarProperty Name="Parameters" ColumnName="Parameters" />
+          <ScalarProperty Name="DataSettings" ColumnName="DataSettings" />
+          <ScalarProperty Name="DeliveryExtension" ColumnName="DeliveryExtension" />
+          <ScalarProperty Name="Version" ColumnName="Version" />
+          <ScalarProperty Name="ReportZone" ColumnName="ReportZone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubscriptionsBeingDeleted">
+      <EntityTypeMapping TypeName="ReportServerModel.SubscriptionsBeingDeleted">
+        <MappingFragment StoreEntitySet="SubscriptionsBeingDeleted">
+          <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UpgradeInfo">
+      <EntityTypeMapping TypeName="ReportServerModel.UpgradeInfo">
+        <MappingFragment StoreEntitySet="UpgradeInfo">
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="ReportServerModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Sid" ColumnName="Sid" />
+          <ScalarProperty Name="UserType" ColumnName="UserType" />
+          <ScalarProperty Name="AuthType" ColumnName="AuthType" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Batch">
+      <EntityTypeMapping TypeName="ReportServerModel.Batch">
+        <MappingFragment StoreEntitySet="Batch">
+          <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+          <ScalarProperty Name="AddedOn" ColumnName="AddedOn" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Item" ColumnName="Item" />
+          <ScalarProperty Name="Parent" ColumnName="Parent" />
+          <ScalarProperty Name="Param" ColumnName="Param" />
+          <ScalarProperty Name="BoolParam" ColumnName="BoolParam" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Properties" ColumnName="Properties" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelPerspective">
+      <EntityTypeMapping TypeName="ReportServerModel.ModelPerspective">
+        <MappingFragment StoreEntitySet="ModelPerspective">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+          <ScalarProperty Name="PerspectiveID" ColumnName="PerspectiveID" />
+          <ScalarProperty Name="PerspectiveName" ColumnName="PerspectiveName" />
+          <ScalarProperty Name="PerspectiveDescription" ColumnName="PerspectiveDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportSchedule">
+      <EntityTypeMapping TypeName="ReportServerModel.ReportSchedule">
+        <MappingFragment StoreEntitySet="ReportSchedule">
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+          <ScalarProperty Name="ReportID" ColumnName="ReportID" />
+          <ScalarProperty Name="SubscriptionID" ColumnName="SubscriptionID" />
+          <ScalarProperty Name="ReportAction" ColumnName="ReportAction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

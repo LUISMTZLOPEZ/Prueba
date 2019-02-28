@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JuguetesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cata_Categoria">
+    <Key>
+      <PropertyRef Name="Cate_Id" />
+    </Key>
+    <Property Name="Cate_Id" Type="int" Nullable="false" />
+    <Property Name="Cate_Nombre" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Cata_Marca">
+    <Key>
+      <PropertyRef Name="Cata_Id" />
+    </Key>
+    <Property Name="Cata_Id" Type="int" Nullable="false" />
+    <Property Name="Cata_Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Juguete">
+    <Key>
+      <PropertyRef Name="Jugue_Id" />
+    </Key>
+    <Property Name="Jugue_Id" Type="int" Nullable="false" />
+    <Property Name="Jugue_Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Jugue_Existencia" Type="int" />
+    <Property Name="Jugue_Marca_Id" Type="int" />
+    <Property Name="Jugue_Categoria_Id" Type="int" />
+    <Property Name="Jugue_Fecha_Alta" Type="smalldatetime" />
+    <Property Name="Jugue_Precio" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Jugue_Estatus" Type="bit" />
+    <Property Name="Jugue_Foto" Type="nvarchar(max)" />
+    <Property Name="Jugue_Costo" Type="decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'Juguetes.dbo.Usuarios' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Usuarios">
+          <Property Name="User_Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="User_Password" Type="nvarchar" MaxLength="150" />
+          <Property Name="User_Id" Type="int" />
+        </EntityType>-->
+  <Association Name="FK_Juguete_Cata_Categoria">
+    <End Role="Cata_Categoria" Type="Self.Cata_Categoria" Multiplicity="0..1" />
+    <End Role="Juguete" Type="Self.Juguete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cata_Categoria">
+        <PropertyRef Name="Cate_Id" />
+      </Principal>
+      <Dependent Role="Juguete">
+        <PropertyRef Name="Jugue_Categoria_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Juguete_Cata_Marca">
+    <End Role="Cata_Marca" Type="Self.Cata_Marca" Multiplicity="0..1" />
+    <End Role="Juguete" Type="Self.Juguete" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cata_Marca">
+        <PropertyRef Name="Cata_Id" />
+      </Principal>
+      <Dependent Role="Juguete">
+        <PropertyRef Name="Jugue_Marca_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JuguetesModelStoreContainer">
+    <EntitySet Name="Cata_Categoria" EntityType="Self.Cata_Categoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cata_Marca" EntityType="Self.Cata_Marca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Juguete" EntityType="Self.Juguete" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Juguete_Cata_Categoria" Association="Self.FK_Juguete_Cata_Categoria">
+      <End Role="Cata_Categoria" EntitySet="Cata_Categoria" />
+      <End Role="Juguete" EntitySet="Juguete" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Juguete_Cata_Marca" Association="Self.FK_Juguete_Cata_Marca">
+      <End Role="Cata_Marca" EntitySet="Cata_Marca" />
+      <End Role="Juguete" EntitySet="Juguete" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

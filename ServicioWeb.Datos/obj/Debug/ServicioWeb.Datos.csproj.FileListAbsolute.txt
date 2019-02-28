@@ -1,0 +1,15 @@
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\obj\Debug\ServicioWeb.Datos.csprojAssemblyReference.cache
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\obj\Debug\ServicioWeb.Datos.csproj.CoreCompileInputs.cache
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\bin\Debug\ServicioWeb.Datos.dll.config
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\bin\Debug\ServicioWeb.Datos.dll
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\bin\Debug\ServicioWeb.Datos.pdb
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\bin\Debug\EntityFramework.dll
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\bin\Debug\ServicioWeb.Modelos.dll
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\bin\Debug\ServicioWeb.Modelos.pdb
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\bin\Debug\ServicioWeb.Modelos.dll.config
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\bin\Debug\EntityFramework.xml
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\obj\Debug\ServicioWeb.Datos.csproj.CopyComplete
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\obj\Debug\ServicioWeb.Datos.dll
+C:\Users\Gesfor\Desktop\Proyecto web API\ServicioWebGesfor\ServicioWeb.Datos\obj\Debug\ServicioWeb.Datos.pdb

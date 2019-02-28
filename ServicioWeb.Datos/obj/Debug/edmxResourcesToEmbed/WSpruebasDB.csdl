@@ -1,0 +1,978 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ReportServerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ActiveSubscriptions">
+    <Key>
+      <PropertyRef Name="ActiveID" />
+    </Key>
+    <Property Name="ActiveID" Type="Guid" Nullable="false" />
+    <Property Name="SubscriptionID" Type="Guid" Nullable="false" />
+    <Property Name="TotalNotifications" Type="Int32" />
+    <Property Name="TotalSuccesses" Type="Int32" Nullable="false" />
+    <Property Name="TotalFailures" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Subscriptions" Relationship="Self.FK_ActiveSubscriptions_Subscriptions" FromRole="ActiveSubscriptions" ToRole="Subscriptions" />
+  </EntityType>
+  <EntityType Name="CachePolicy">
+    <Key>
+      <PropertyRef Name="CachePolicyID" />
+    </Key>
+    <Property Name="CachePolicyID" Type="Guid" Nullable="false" />
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="ExpirationFlags" Type="Int32" Nullable="false" />
+    <Property Name="CacheExpiration" Type="Int32" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_CachePolicyReportID" FromRole="CachePolicy" ToRole="Catalog" />
+  </EntityType>
+  <EntityType Name="Catalog">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemID" Type="Guid" Nullable="false" />
+    <Property Name="Path" Type="String" MaxLength="425" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="425" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ParentID" Type="Guid" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Intermediate" Type="Guid" />
+    <Property Name="SnapshotDataID" Type="Guid" />
+    <Property Name="LinkSourceID" Type="Guid" />
+    <Property Name="Property" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="Hidden" Type="Boolean" />
+    <Property Name="CreatedByID" Type="Guid" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedByID" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MimeType" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="SnapshotLimit" Type="Int32" />
+    <Property Name="Parameter" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PolicyID" Type="Guid" Nullable="false" />
+    <Property Name="PolicyRoot" Type="Boolean" Nullable="false" />
+    <Property Name="ExecutionFlag" Type="Int32" Nullable="false" />
+    <Property Name="ExecutionTime" Type="DateTime" Precision="3" />
+    <Property Name="SubType" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="ComponentID" Type="Guid" />
+    <NavigationProperty Name="CachePolicy" Relationship="Self.FK_CachePolicyReportID" FromRole="Catalog" ToRole="CachePolicy" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Catalog_CreatedByID" FromRole="Catalog" ToRole="Users" />
+    <NavigationProperty Name="Catalog1" Relationship="Self.FK_Catalog_LinkSourceID" FromRole="Catalog" ToRole="Catalog1" />
+    <NavigationProperty Name="Catalog2" Relationship="Self.FK_Catalog_LinkSourceID" FromRole="Catalog1" ToRole="Catalog" />
+    <NavigationProperty Name="Users1" Relationship="Self.FK_Catalog_ModifiedByID" FromRole="Catalog" ToRole="Users" />
+    <NavigationProperty Name="Catalog11" Relationship="Self.FK_Catalog_ParentID" FromRole="Catalog" ToRole="Catalog1" />
+    <NavigationProperty Name="Catalog3" Relationship="Self.FK_Catalog_ParentID" FromRole="Catalog1" ToRole="Catalog" />
+    <NavigationProperty Name="Policies" Relationship="Self.FK_Catalog_Policy" FromRole="Catalog" ToRole="Policies" />
+    <NavigationProperty Name="DataSets" Relationship="Self.FK_DataSetItemID" FromRole="Catalog" ToRole="DataSets" />
+    <NavigationProperty Name="DataSets1" Relationship="Self.FK_DataSetLinkID" FromRole="Catalog" ToRole="DataSets" />
+    <NavigationProperty Name="DataSource" Relationship="Self.FK_DataSourceItemID" FromRole="Catalog" ToRole="DataSource" />
+    <NavigationProperty Name="ModelDrill" Relationship="Self.FK_ModelDrillModel" FromRole="Catalog" ToRole="ModelDrill" />
+    <NavigationProperty Name="ModelDrill1" Relationship="Self.FK_ModelDrillReport" FromRole="Catalog" ToRole="ModelDrill" />
+    <NavigationProperty Name="ModelPerspective" Relationship="Self.FK_ModelPerspectiveModel" FromRole="Catalog" ToRole="ModelPerspective" />
+    <NavigationProperty Name="ReportSchedule" Relationship="Self.FK_ReportSchedule_Report" FromRole="Catalog" ToRole="ReportSchedule" />
+    <NavigationProperty Name="Subscriptions" Relationship="Self.FK_Subscriptions_Catalog" FromRole="Catalog" ToRole="Subscriptions" />
+  </EntityType>
+  <EntityType Name="ChunkData">
+    <Key>
+      <PropertyRef Name="ChunkID" />
+    </Key>
+    <Property Name="ChunkID" Type="Guid" Nullable="false" />
+    <Property Name="SnapshotDataID" Type="Guid" Nullable="false" />
+    <Property Name="ChunkFlags" Type="Byte" />
+    <Property Name="ChunkName" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="ChunkType" Type="Int32" />
+    <Property Name="Version" Type="Int16" />
+    <Property Name="MimeType" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ChunkSegmentMapping">
+    <Key>
+      <PropertyRef Name="ChunkId" />
+      <PropertyRef Name="SegmentId" />
+    </Key>
+    <Property Name="ChunkId" Type="Guid" Nullable="false" />
+    <Property Name="SegmentId" Type="Guid" Nullable="false" />
+    <Property Name="StartByte" Type="Int64" Nullable="false" />
+    <Property Name="LogicalByteCount" Type="Int32" Nullable="false" />
+    <Property Name="ActualByteCount" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ConfigurationInfo">
+    <Key>
+      <PropertyRef Name="ConfigInfoID" />
+    </Key>
+    <Property Name="ConfigInfoID" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DataSets">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="ItemID" Type="Guid" Nullable="false" />
+    <Property Name="LinkID" Type="Guid" />
+    <Property Name="Name" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_DataSetItemID" FromRole="DataSets" ToRole="Catalog" />
+    <NavigationProperty Name="Catalog1" Relationship="Self.FK_DataSetLinkID" FromRole="DataSets" ToRole="Catalog" />
+  </EntityType>
+  <EntityType Name="DataSource">
+    <Key>
+      <PropertyRef Name="DSID" />
+    </Key>
+    <Property Name="DSID" Type="Guid" Nullable="false" />
+    <Property Name="ItemID" Type="Guid" />
+    <Property Name="SubscriptionID" Type="Guid" />
+    <Property Name="Name" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="Extension" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="Guid" />
+    <Property Name="CredentialRetrieval" Type="Int32" />
+    <Property Name="Prompt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ConnectionString" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="OriginalConnectionString" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="OriginalConnectStringExpressionBased" Type="Boolean" />
+    <Property Name="UserName" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Password" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Flags" Type="Int32" />
+    <Property Name="Version" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_DataSourceItemID" FromRole="DataSource" ToRole="Catalog" />
+  </EntityType>
+  <EntityType Name="DBUpgradeHistory">
+    <Key>
+      <PropertyRef Name="UpgradeID" />
+    </Key>
+    <Property Name="UpgradeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DbVersion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventID" />
+    </Key>
+    <Property Name="EventID" Type="Guid" Nullable="false" />
+    <Property Name="EventType" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventData" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="TimeEntered" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProcessStart" Type="DateTime" Precision="3" />
+    <Property Name="ProcessHeartbeat" Type="DateTime" Precision="3" />
+    <Property Name="BatchID" Type="Guid" />
+  </EntityType>
+  <EntityType Name="ExecutionLogStorage">
+    <Key>
+      <PropertyRef Name="LogEntryId" />
+    </Key>
+    <Property Name="LogEntryId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="InstanceName" Type="String" MaxLength="38" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReportID" Type="Guid" />
+    <Property Name="UserName" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="ExecutionId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+    <Property Name="RequestType" Type="Byte" Nullable="false" />
+    <Property Name="Format" Type="String" MaxLength="26" FixedLength="false" Unicode="true" />
+    <Property Name="Parameters" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReportAction" Type="Byte" />
+    <Property Name="TimeStart" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TimeEnd" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TimeDataRetrieval" Type="Int32" Nullable="false" />
+    <Property Name="TimeProcessing" Type="Int32" Nullable="false" />
+    <Property Name="TimeRendering" Type="Int32" Nullable="false" />
+    <Property Name="Source" Type="Byte" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ByteCount" Type="Int64" Nullable="false" />
+    <Property Name="RowCount" Type="Int64" Nullable="false" />
+    <Property Name="AdditionalInfo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="History">
+    <Key>
+      <PropertyRef Name="HistoryID" />
+    </Key>
+    <Property Name="HistoryID" Type="Guid" Nullable="false" />
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="SnapshotDataID" Type="Guid" Nullable="false" />
+    <Property Name="SnapshotDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="Keys">
+    <Key>
+      <PropertyRef Name="InstallationID" />
+      <PropertyRef Name="Client" />
+    </Key>
+    <Property Name="MachineName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="InstallationID" Type="Guid" Nullable="false" />
+    <Property Name="InstanceName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Client" Type="Int32" Nullable="false" />
+    <Property Name="PublicKey" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="SymmetricKey" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ModelDrill">
+    <Key>
+      <PropertyRef Name="ModelDrillID" />
+    </Key>
+    <Property Name="ModelDrillID" Type="Guid" Nullable="false" />
+    <Property Name="ModelID" Type="Guid" Nullable="false" />
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="ModelItemID" Type="String" MaxLength="425" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_ModelDrillModel" FromRole="ModelDrill" ToRole="Catalog" />
+    <NavigationProperty Name="Catalog1" Relationship="Self.FK_ModelDrillReport" FromRole="ModelDrill" ToRole="Catalog" />
+  </EntityType>
+  <EntityType Name="ModelItemPolicy">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="CatalogItemID" Type="Guid" Nullable="false" />
+    <Property Name="ModelItemID" Type="String" MaxLength="425" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PolicyID" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Policies" Relationship="Self.FK_PoliciesPolicyID" FromRole="ModelItemPolicy" ToRole="Policies" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="NotificationID" />
+    </Key>
+    <Property Name="NotificationID" Type="Guid" Nullable="false" />
+    <Property Name="SubscriptionID" Type="Guid" Nullable="false" />
+    <Property Name="ActivationID" Type="Guid" />
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="SnapShotDate" Type="DateTime" Precision="3" />
+    <Property Name="ExtensionSettings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Locale" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Parameters" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ProcessStart" Type="DateTime" Precision="3" />
+    <Property Name="NotificationEntered" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ProcessAfter" Type="DateTime" Precision="3" />
+    <Property Name="Attempt" Type="Int32" />
+    <Property Name="SubscriptionLastRunTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DeliveryExtension" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SubscriptionOwnerID" Type="Guid" Nullable="false" />
+    <Property Name="IsDataDriven" Type="Boolean" Nullable="false" />
+    <Property Name="BatchID" Type="Guid" />
+    <Property Name="ProcessHeartbeat" Type="DateTime" Precision="3" />
+    <Property Name="Version" Type="Int32" Nullable="false" />
+    <Property Name="ReportZone" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Subscriptions" Relationship="Self.FK_Notifications_Subscriptions" FromRole="Notifications" ToRole="Subscriptions" />
+  </EntityType>
+  <EntityType Name="Policies">
+    <Key>
+      <PropertyRef Name="PolicyID" />
+    </Key>
+    <Property Name="PolicyID" Type="Guid" Nullable="false" />
+    <Property Name="PolicyFlag" Type="Byte" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_Catalog_Policy" FromRole="Policies" ToRole="Catalog" />
+    <NavigationProperty Name="ModelItemPolicy" Relationship="Self.FK_PoliciesPolicyID" FromRole="Policies" ToRole="ModelItemPolicy" />
+    <NavigationProperty Name="PolicyUserRole" Relationship="Self.FK_PolicyUserRole_Policy" FromRole="Policies" ToRole="PolicyUserRole" />
+    <NavigationProperty Name="SecData" Relationship="Self.FK_SecDataPolicyID" FromRole="Policies" ToRole="SecData" />
+  </EntityType>
+  <EntityType Name="PolicyUserRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="RoleID" Type="Guid" Nullable="false" />
+    <Property Name="UserID" Type="Guid" Nullable="false" />
+    <Property Name="PolicyID" Type="Guid" Nullable="false" />
+    <NavigationProperty Name="Policies" Relationship="Self.FK_PolicyUserRole_Policy" FromRole="PolicyUserRole" ToRole="Policies" />
+    <NavigationProperty Name="Roles" Relationship="Self.FK_PolicyUserRole_Role" FromRole="PolicyUserRole" ToRole="Roles" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_PolicyUserRole_User" FromRole="PolicyUserRole" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Guid" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="TaskMask" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleFlags" Type="Byte" Nullable="false" />
+    <NavigationProperty Name="PolicyUserRole" Relationship="Self.FK_PolicyUserRole_Role" FromRole="Roles" ToRole="PolicyUserRole" />
+  </EntityType>
+  <EntityType Name="RunningJobs">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ComputerName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RequestName" Type="String" MaxLength="425" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RequestPath" Type="String" MaxLength="425" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Timeout" Type="Int32" Nullable="false" />
+    <Property Name="JobAction" Type="Int16" Nullable="false" />
+    <Property Name="JobType" Type="Int16" Nullable="false" />
+    <Property Name="JobStatus" Type="Int16" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="ScheduleID" />
+    </Key>
+    <Property Name="ScheduleID" Type="Guid" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Flags" Type="Int32" Nullable="false" />
+    <Property Name="NextRunTime" Type="DateTime" Precision="3" />
+    <Property Name="LastRunTime" Type="DateTime" Precision="3" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="RecurrenceType" Type="Int32" />
+    <Property Name="MinutesInterval" Type="Int32" />
+    <Property Name="DaysInterval" Type="Int32" />
+    <Property Name="WeeksInterval" Type="Int32" />
+    <Property Name="DaysOfWeek" Type="Int32" />
+    <Property Name="DaysOfMonth" Type="Int32" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="MonthlyWeek" Type="Int32" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="LastRunStatus" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="ScheduledRunTimeout" Type="Int32" />
+    <Property Name="CreatedById" Type="Guid" Nullable="false" />
+    <Property Name="EventType" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventData" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
+    <Property Name="ConsistancyCheck" Type="DateTime" Precision="3" />
+    <Property Name="Path" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ReportSchedule" Relationship="Self.FK_ReportSchedule_Schedule" FromRole="Schedule" ToRole="ReportSchedule" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Schedule_Users" FromRole="Schedule" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="SecData">
+    <Key>
+      <PropertyRef Name="SecDataID" />
+    </Key>
+    <Property Name="SecDataID" Type="Guid" Nullable="false" />
+    <Property Name="PolicyID" Type="Guid" Nullable="false" />
+    <Property Name="AuthType" Type="Int32" Nullable="false" />
+    <Property Name="XmlDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NtSecDescPrimary" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="NtSecDescSecondary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Policies" Relationship="Self.FK_SecDataPolicyID" FromRole="SecData" ToRole="Policies" />
+  </EntityType>
+  <EntityType Name="Segment">
+    <Key>
+      <PropertyRef Name="SegmentId" />
+    </Key>
+    <Property Name="SegmentId" Type="Guid" Nullable="false" />
+    <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SegmentedChunk">
+    <Key>
+      <PropertyRef Name="SegmentedChunkId" />
+    </Key>
+    <Property Name="ChunkId" Type="Guid" Nullable="false" />
+    <Property Name="SnapshotDataId" Type="Guid" Nullable="false" />
+    <Property Name="ChunkFlags" Type="Byte" Nullable="false" />
+    <Property Name="ChunkName" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ChunkType" Type="Int32" Nullable="false" />
+    <Property Name="Version" Type="Int16" Nullable="false" />
+    <Property Name="MimeType" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="SegmentedChunkId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="ServerParametersInstance">
+    <Key>
+      <PropertyRef Name="ServerParametersID" />
+    </Key>
+    <Property Name="ServerParametersID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ParentID" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+    <Property Name="Path" Type="String" MaxLength="425" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Timeout" Type="Int32" Nullable="false" />
+    <Property Name="Expiration" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ParametersValues" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ServerUpgradeHistory">
+    <Key>
+      <PropertyRef Name="UpgradeID" />
+    </Key>
+    <Property Name="UpgradeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ServerVersion" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="User" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="DateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SnapshotData">
+    <Key>
+      <PropertyRef Name="SnapshotDataID" />
+    </Key>
+    <Property Name="SnapshotDataID" Type="Guid" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ParamsHash" Type="Int32" />
+    <Property Name="QueryParams" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EffectiveParams" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="DependsOnUser" Type="Boolean" />
+    <Property Name="PermanentRefcount" Type="Int32" Nullable="false" />
+    <Property Name="TransientRefcount" Type="Int32" Nullable="false" />
+    <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PageCount" Type="Int32" />
+    <Property Name="HasDocMap" Type="Boolean" />
+    <Property Name="PaginationMode" Type="Int16" />
+    <Property Name="ProcessingFlags" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Subscriptions">
+    <Key>
+      <PropertyRef Name="SubscriptionID" />
+    </Key>
+    <Property Name="SubscriptionID" Type="Guid" Nullable="false" />
+    <Property Name="OwnerID" Type="Guid" Nullable="false" />
+    <Property Name="Report_OID" Type="Guid" Nullable="false" />
+    <Property Name="Locale" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="InactiveFlags" Type="Int32" Nullable="false" />
+    <Property Name="ExtensionSettings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedByID" Type="Guid" Nullable="false" />
+    <Property Name="ModifiedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Description" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+    <Property Name="LastStatus" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="EventType" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MatchData" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LastRunTime" Type="DateTime" Precision="3" />
+    <Property Name="Parameters" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DataSettings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DeliveryExtension" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <Property Name="Version" Type="Int32" Nullable="false" />
+    <Property Name="ReportZone" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ActiveSubscriptions" Relationship="Self.FK_ActiveSubscriptions_Subscriptions" FromRole="Subscriptions" ToRole="ActiveSubscriptions" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_Subscriptions_Catalog" FromRole="Subscriptions" ToRole="Catalog" />
+    <NavigationProperty Name="Notifications" Relationship="Self.FK_Notifications_Subscriptions" FromRole="Subscriptions" ToRole="Notifications" />
+    <NavigationProperty Name="ReportSchedule" Relationship="Self.FK_ReportSchedule_Subscriptions" FromRole="Subscriptions" ToRole="ReportSchedule" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Subscriptions_ModifiedBy" FromRole="Subscriptions" ToRole="Users" />
+    <NavigationProperty Name="Users1" Relationship="Self.FK_Subscriptions_Owner" FromRole="Subscriptions" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="SubscriptionsBeingDeleted">
+    <Key>
+      <PropertyRef Name="SubscriptionID" />
+    </Key>
+    <Property Name="SubscriptionID" Type="Guid" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="UpgradeInfo">
+    <Key>
+      <PropertyRef Name="Item" />
+    </Key>
+    <Property Name="Item" Type="String" MaxLength="260" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Guid" Nullable="false" />
+    <Property Name="Sid" Type="Binary" MaxLength="85" FixedLength="false" />
+    <Property Name="UserType" Type="Int32" Nullable="false" />
+    <Property Name="AuthType" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="260" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_Catalog_CreatedByID" FromRole="Users" ToRole="Catalog" />
+    <NavigationProperty Name="Catalog1" Relationship="Self.FK_Catalog_ModifiedByID" FromRole="Users" ToRole="Catalog" />
+    <NavigationProperty Name="PolicyUserRole" Relationship="Self.FK_PolicyUserRole_User" FromRole="Users" ToRole="PolicyUserRole" />
+    <NavigationProperty Name="Schedule" Relationship="Self.FK_Schedule_Users" FromRole="Users" ToRole="Schedule" />
+    <NavigationProperty Name="Subscriptions" Relationship="Self.FK_Subscriptions_ModifiedBy" FromRole="Users" ToRole="Subscriptions" />
+    <NavigationProperty Name="Subscriptions1" Relationship="Self.FK_Subscriptions_Owner" FromRole="Users" ToRole="Subscriptions" />
+  </EntityType>
+  <EntityType Name="Batch">
+    <Key>
+      <PropertyRef Name="BatchID" />
+      <PropertyRef Name="AddedOn" />
+      <PropertyRef Name="Action" />
+    </Key>
+    <Property Name="BatchID" Type="Guid" Nullable="false" />
+    <Property Name="AddedOn" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Action" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Item" Type="String" MaxLength="425" FixedLength="false" Unicode="true" />
+    <Property Name="Parent" Type="String" MaxLength="425" FixedLength="false" Unicode="true" />
+    <Property Name="Param" Type="String" MaxLength="425" FixedLength="false" Unicode="true" />
+    <Property Name="BoolParam" Type="Boolean" />
+    <Property Name="Content" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Properties" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ModelPerspective">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="ModelID" />
+      <PropertyRef Name="PerspectiveID" />
+    </Key>
+    <Property Name="ID" Type="Guid" Nullable="false" />
+    <Property Name="ModelID" Type="Guid" Nullable="false" />
+    <Property Name="PerspectiveID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PerspectiveName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PerspectiveDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_ModelPerspectiveModel" FromRole="ModelPerspective" ToRole="Catalog" />
+  </EntityType>
+  <EntityType Name="ReportSchedule">
+    <Key>
+      <PropertyRef Name="ScheduleID" />
+      <PropertyRef Name="ReportID" />
+      <PropertyRef Name="ReportAction" />
+    </Key>
+    <Property Name="ScheduleID" Type="Guid" Nullable="false" />
+    <Property Name="ReportID" Type="Guid" Nullable="false" />
+    <Property Name="SubscriptionID" Type="Guid" />
+    <Property Name="ReportAction" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Catalog" Relationship="Self.FK_ReportSchedule_Report" FromRole="ReportSchedule" ToRole="Catalog" />
+    <NavigationProperty Name="Schedule" Relationship="Self.FK_ReportSchedule_Schedule" FromRole="ReportSchedule" ToRole="Schedule" />
+    <NavigationProperty Name="Subscriptions" Relationship="Self.FK_ReportSchedule_Subscriptions" FromRole="ReportSchedule" ToRole="Subscriptions" />
+  </EntityType>
+  <Association Name="FK_ActiveSubscriptions_Subscriptions">
+    <End Role="Subscriptions" Type="Self.Subscriptions" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ActiveSubscriptions" Type="Self.ActiveSubscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subscriptions">
+        <PropertyRef Name="SubscriptionID" />
+      </Principal>
+      <Dependent Role="ActiveSubscriptions">
+        <PropertyRef Name="SubscriptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CachePolicyReportID">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CachePolicy" Type="Self.CachePolicy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="CachePolicy">
+        <PropertyRef Name="ReportID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Catalog_CreatedByID">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Catalog">
+        <PropertyRef Name="CreatedByID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Catalog_LinkSourceID">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="0..1" />
+    <End Role="Catalog1" Type="Self.Catalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="Catalog1">
+        <PropertyRef Name="LinkSourceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Catalog_ModifiedByID">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Catalog">
+        <PropertyRef Name="ModifiedByID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Catalog_ParentID">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="0..1" />
+    <End Role="Catalog1" Type="Self.Catalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="Catalog1">
+        <PropertyRef Name="ParentID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Catalog_Policy">
+    <End Role="Policies" Type="Self.Policies" Multiplicity="1" />
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Policies">
+        <PropertyRef Name="PolicyID" />
+      </Principal>
+      <Dependent Role="Catalog">
+        <PropertyRef Name="PolicyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataSetItemID">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+    <End Role="DataSets" Type="Self.DataSets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="DataSets">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataSetLinkID">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="0..1" />
+    <End Role="DataSets" Type="Self.DataSets" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="DataSets">
+        <PropertyRef Name="LinkID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DataSourceItemID">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="0..1" />
+    <End Role="DataSource" Type="Self.DataSource" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="DataSource">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModelDrillModel">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ModelDrill" Type="Self.ModelDrill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="ModelDrill">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModelDrillReport">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1" />
+    <End Role="ModelDrill" Type="Self.ModelDrill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="ModelDrill">
+        <PropertyRef Name="ReportID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ModelPerspectiveModel">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ModelPerspective" Type="Self.ModelPerspective" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="ModelPerspective">
+        <PropertyRef Name="ModelID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportSchedule_Report">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ReportSchedule" Type="Self.ReportSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="ReportSchedule">
+        <PropertyRef Name="ReportID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subscriptions_Catalog">
+    <End Role="Catalog" Type="Self.Catalog" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Subscriptions" Type="Self.Subscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Catalog">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="Subscriptions">
+        <PropertyRef Name="Report_OID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PoliciesPolicyID">
+    <End Role="Policies" Type="Self.Policies" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ModelItemPolicy" Type="Self.ModelItemPolicy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Policies">
+        <PropertyRef Name="PolicyID" />
+      </Principal>
+      <Dependent Role="ModelItemPolicy">
+        <PropertyRef Name="PolicyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notifications_Subscriptions">
+    <End Role="Subscriptions" Type="Self.Subscriptions" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Notifications" Type="Self.Notifications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subscriptions">
+        <PropertyRef Name="SubscriptionID" />
+      </Principal>
+      <Dependent Role="Notifications">
+        <PropertyRef Name="SubscriptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PolicyUserRole_Policy">
+    <End Role="Policies" Type="Self.Policies" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="PolicyUserRole" Type="Self.PolicyUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Policies">
+        <PropertyRef Name="PolicyID" />
+      </Principal>
+      <Dependent Role="PolicyUserRole">
+        <PropertyRef Name="PolicyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SecDataPolicyID">
+    <End Role="Policies" Type="Self.Policies" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SecData" Type="Self.SecData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Policies">
+        <PropertyRef Name="PolicyID" />
+      </Principal>
+      <Dependent Role="SecData">
+        <PropertyRef Name="PolicyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PolicyUserRole_Role">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="PolicyUserRole" Type="Self.PolicyUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="PolicyUserRole">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PolicyUserRole_User">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="PolicyUserRole" Type="Self.PolicyUserRole" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="PolicyUserRole">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportSchedule_Schedule">
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ReportSchedule" Type="Self.ReportSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Schedule">
+        <PropertyRef Name="ScheduleID" />
+      </Principal>
+      <Dependent Role="ReportSchedule">
+        <PropertyRef Name="ScheduleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Schedule_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Schedule" Type="Self.Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Schedule">
+        <PropertyRef Name="CreatedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportSchedule_Subscriptions">
+    <End Role="Subscriptions" Type="Self.Subscriptions" Multiplicity="0..1" />
+    <End Role="ReportSchedule" Type="Self.ReportSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subscriptions">
+        <PropertyRef Name="SubscriptionID" />
+      </Principal>
+      <Dependent Role="ReportSchedule">
+        <PropertyRef Name="SubscriptionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subscriptions_ModifiedBy">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Subscriptions" Type="Self.Subscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Subscriptions">
+        <PropertyRef Name="ModifiedByID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Subscriptions_Owner">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Subscriptions" Type="Self.Subscriptions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Subscriptions">
+        <PropertyRef Name="OwnerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ReportServerEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ActiveSubscriptions" EntityType="Self.ActiveSubscriptions" />
+    <EntitySet Name="CachePolicy" EntityType="Self.CachePolicy" />
+    <EntitySet Name="Catalog" EntityType="Self.Catalog" />
+    <EntitySet Name="ChunkData" EntityType="Self.ChunkData" />
+    <EntitySet Name="ChunkSegmentMapping" EntityType="Self.ChunkSegmentMapping" />
+    <EntitySet Name="ConfigurationInfo" EntityType="Self.ConfigurationInfo" />
+    <EntitySet Name="DataSets" EntityType="Self.DataSets" />
+    <EntitySet Name="DataSource" EntityType="Self.DataSource" />
+    <EntitySet Name="DBUpgradeHistory" EntityType="Self.DBUpgradeHistory" />
+    <EntitySet Name="Event" EntityType="Self.Event" />
+    <EntitySet Name="ExecutionLogStorage" EntityType="Self.ExecutionLogStorage" />
+    <EntitySet Name="History" EntityType="Self.History" />
+    <EntitySet Name="Keys" EntityType="Self.Keys" />
+    <EntitySet Name="ModelDrill" EntityType="Self.ModelDrill" />
+    <EntitySet Name="ModelItemPolicy" EntityType="Self.ModelItemPolicy" />
+    <EntitySet Name="Notifications" EntityType="Self.Notifications" />
+    <EntitySet Name="Policies" EntityType="Self.Policies" />
+    <EntitySet Name="PolicyUserRole" EntityType="Self.PolicyUserRole" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" />
+    <EntitySet Name="RunningJobs" EntityType="Self.RunningJobs" />
+    <EntitySet Name="Schedule" EntityType="Self.Schedule" />
+    <EntitySet Name="SecData" EntityType="Self.SecData" />
+    <EntitySet Name="Segment" EntityType="Self.Segment" />
+    <EntitySet Name="SegmentedChunk" EntityType="Self.SegmentedChunk" />
+    <EntitySet Name="ServerParametersInstance" EntityType="Self.ServerParametersInstance" />
+    <EntitySet Name="ServerUpgradeHistory" EntityType="Self.ServerUpgradeHistory" />
+    <EntitySet Name="SnapshotData" EntityType="Self.SnapshotData" />
+    <EntitySet Name="Subscriptions" EntityType="Self.Subscriptions" />
+    <EntitySet Name="SubscriptionsBeingDeleted" EntityType="Self.SubscriptionsBeingDeleted" />
+    <EntitySet Name="UpgradeInfo" EntityType="Self.UpgradeInfo" />
+    <EntitySet Name="Users" EntityType="Self.Users" />
+    <EntitySet Name="Batch" EntityType="Self.Batch" />
+    <EntitySet Name="ModelPerspective" EntityType="Self.ModelPerspective" />
+    <EntitySet Name="ReportSchedule" EntityType="Self.ReportSchedule" />
+    <AssociationSet Name="FK_ActiveSubscriptions_Subscriptions" Association="Self.FK_ActiveSubscriptions_Subscriptions">
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+      <End Role="ActiveSubscriptions" EntitySet="ActiveSubscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CachePolicyReportID" Association="Self.FK_CachePolicyReportID">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="CachePolicy" EntitySet="CachePolicy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Catalog_CreatedByID" Association="Self.FK_Catalog_CreatedByID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Catalog" EntitySet="Catalog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Catalog_LinkSourceID" Association="Self.FK_Catalog_LinkSourceID">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="Catalog1" EntitySet="Catalog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Catalog_ModifiedByID" Association="Self.FK_Catalog_ModifiedByID">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Catalog" EntitySet="Catalog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Catalog_ParentID" Association="Self.FK_Catalog_ParentID">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="Catalog1" EntitySet="Catalog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Catalog_Policy" Association="Self.FK_Catalog_Policy">
+      <End Role="Policies" EntitySet="Policies" />
+      <End Role="Catalog" EntitySet="Catalog" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataSetItemID" Association="Self.FK_DataSetItemID">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="DataSets" EntitySet="DataSets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataSetLinkID" Association="Self.FK_DataSetLinkID">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="DataSets" EntitySet="DataSets" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DataSourceItemID" Association="Self.FK_DataSourceItemID">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="DataSource" EntitySet="DataSource" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModelDrillModel" Association="Self.FK_ModelDrillModel">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="ModelDrill" EntitySet="ModelDrill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModelDrillReport" Association="Self.FK_ModelDrillReport">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="ModelDrill" EntitySet="ModelDrill" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ModelPerspectiveModel" Association="Self.FK_ModelPerspectiveModel">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="ModelPerspective" EntitySet="ModelPerspective" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportSchedule_Report" Association="Self.FK_ReportSchedule_Report">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="ReportSchedule" EntitySet="ReportSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subscriptions_Catalog" Association="Self.FK_Subscriptions_Catalog">
+      <End Role="Catalog" EntitySet="Catalog" />
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PoliciesPolicyID" Association="Self.FK_PoliciesPolicyID">
+      <End Role="Policies" EntitySet="Policies" />
+      <End Role="ModelItemPolicy" EntitySet="ModelItemPolicy" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notifications_Subscriptions" Association="Self.FK_Notifications_Subscriptions">
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+      <End Role="Notifications" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PolicyUserRole_Policy" Association="Self.FK_PolicyUserRole_Policy">
+      <End Role="Policies" EntitySet="Policies" />
+      <End Role="PolicyUserRole" EntitySet="PolicyUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SecDataPolicyID" Association="Self.FK_SecDataPolicyID">
+      <End Role="Policies" EntitySet="Policies" />
+      <End Role="SecData" EntitySet="SecData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PolicyUserRole_Role" Association="Self.FK_PolicyUserRole_Role">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="PolicyUserRole" EntitySet="PolicyUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PolicyUserRole_User" Association="Self.FK_PolicyUserRole_User">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="PolicyUserRole" EntitySet="PolicyUserRole" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportSchedule_Schedule" Association="Self.FK_ReportSchedule_Schedule">
+      <End Role="Schedule" EntitySet="Schedule" />
+      <End Role="ReportSchedule" EntitySet="ReportSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Schedule_Users" Association="Self.FK_Schedule_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Schedule" EntitySet="Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportSchedule_Subscriptions" Association="Self.FK_ReportSchedule_Subscriptions">
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+      <End Role="ReportSchedule" EntitySet="ReportSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subscriptions_ModifiedBy" Association="Self.FK_Subscriptions_ModifiedBy">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Subscriptions_Owner" Association="Self.FK_Subscriptions_Owner">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Subscriptions" EntitySet="Subscriptions" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
